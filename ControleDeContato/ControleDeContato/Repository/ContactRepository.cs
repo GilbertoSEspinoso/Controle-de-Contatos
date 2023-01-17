@@ -13,6 +13,11 @@ namespace ControleDeContato.Repository
             _dataContext = dataContext;
         }
 
+        public ContactModel ListForId(int id)
+        {
+            return _dataContext.Contacts.FirstOrDefault(x => x.Id == id);
+        }
+
         public List<ContactModel> GetAll()
         {
             return _dataContext.Contacts.ToList();
@@ -26,6 +31,33 @@ namespace ControleDeContato.Repository
             return contact;
         }
 
-       
+        public ContactModel UpdateContact(ContactModel contact)
+        {
+            ContactModel contactDb = ListForId(contact.Id);
+            if(contactDb== null)
+            {
+                throw new System.Exception("Houve um erro na atualização do contato");
+            }
+            contactDb.Name = contact.Name;
+            contactDb.Email = contact.Email;
+            contactDb.Phone = contact.Phone;
+
+
+            _dataContext.Contacts.Update(contactDb);
+            _dataContext.SaveChanges();
+            return contactDb;
+        }
+
+        public bool Delete(int id)
+        {
+            ContactModel contactDb = ListForId(id);
+            if (contactDb == null)
+            {
+                throw new System.Exception("Houve um erro ao tentar excluir o contato.");
+            }
+            _dataContext.Contacts.Remove(contactDb);
+            _dataContext.SaveChanges();
+            return true;
+        }
     }
 }

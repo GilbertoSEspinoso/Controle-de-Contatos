@@ -23,19 +23,35 @@ namespace ControleDeContato.Controllers
         {
             return View();
         }
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-            return View();
+            ContactModel contact = _contactRepository.ListForId(id);
+            return View(contact);
         }
-        public IActionResult DeleteContact()
+        public IActionResult DeleteContact(int id)
         {
-            return View();
+            ContactModel contact = _contactRepository.ListForId(id);
+            return View(contact);
+        }
+
+        
+        public IActionResult Delete(int id)
+        {
+            _contactRepository.Delete(id);
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
         public IActionResult Create(ContactModel contact)
         {
             _contactRepository.AddContact(contact);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Change(ContactModel contact)
+        {
+            _contactRepository.UpdateContact(contact);
             return RedirectToAction("Index");
         }
     }
