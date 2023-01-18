@@ -7,6 +7,7 @@ namespace ControleDeContato.Controllers
     public class ContactController : Controller
     {
         private readonly IContactRepository _contactRepository;
+
         public ContactController(IContactRepository contactRepository)
         {
             _contactRepository = contactRepository;
@@ -67,7 +68,7 @@ namespace ControleDeContato.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _contactRepository.AddContact(contact);
+                    contact = _contactRepository.AddContact(contact);
                     TempData["MensagemSucesso"] = "Contato cadastrado com sucesso!";
                     return RedirectToAction("Index");
                 }

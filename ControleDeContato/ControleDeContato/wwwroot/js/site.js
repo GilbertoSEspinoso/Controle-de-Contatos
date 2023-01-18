@@ -3,7 +3,7 @@
 
 // Write your JavaScript code.
 $(document).ready(function () {
-    $('#table-contacts').DataTable({
+    $('#table-principal').DataTable({
         "ordering": true,
         "paging": true,
         "searching": true,
@@ -37,4 +37,3 @@ $(document).ready(function () {
 $('.close-alert').click(function () {
     $('.alert').hide('hide');
 });
-
