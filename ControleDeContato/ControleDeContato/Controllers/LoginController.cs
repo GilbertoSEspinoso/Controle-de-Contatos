@@ -1,4 +1,5 @@
-﻿using ControleDeContato.Models;
+﻿using ControleDeContato.Helper;
+using ControleDeContato.Models;
 using ControleDeContato.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,18 +8,34 @@ namespace ControleDeContato.Controllers
     public class LoginController : Controller
     {
         private readonly IUserRepository _userRepository;
+        private readonly ISessao _sessao;
 
-        public LoginController(IUserRepository userRepository)
+        public LoginController(IUserRepository userRepository, ISessao sessao)
         {
             _userRepository = userRepository;
+            _sessao = sessao;
         }
 
 
 
         public IActionResult Index()
         {
+            //Se o usuario ja estiver logado, redirecionar para home
+
+            if (_sessao.SearchUserSession() != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
+
+        public IActionResult ExitLogin()
+        {
+            _sessao.RemoveSessionUser();
+            return RedirectToAction("Index", "Login"); 
+        }
+
 
         [HttpPost]
         public IActionResult StartLogin(LoginModel loginModel)
@@ -33,6 +50,7 @@ namespace ControleDeContato.Controllers
                     {
                         if (user.ValidPassword(loginModel.Password))
                         {
+                            _sessao.CreateSessionUser(user);
                             return RedirectToAction("Index", "Home");
                         }
 

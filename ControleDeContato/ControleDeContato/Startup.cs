@@ -1,15 +1,15 @@
 using ControleDeContato.Data;
+using ControleDeContato.Helper;
 using ControleDeContato.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+
 
 namespace ControleDeContato
 {
@@ -29,8 +29,17 @@ namespace ControleDeContato
 
             services.AddEntityFrameworkSqlServer().AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataBase")));
             
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ISessao, Sessao>();
+
+            services.AddSession(o =>
+            {
+                o.Cookie.HttpOnly= true;
+                o.Cookie.IsEssential= true;
+            });
 
         }
 
@@ -50,6 +59,8 @@ namespace ControleDeContato
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
