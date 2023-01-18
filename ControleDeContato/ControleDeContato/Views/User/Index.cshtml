@@ -26,7 +26,7 @@
         </div>
     }
 
-    
+
     <br />
     <h1 class="display-4">@ViewData["Title"]</h1>
     <br />
@@ -38,6 +38,7 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Login</th>
                 <th scope="col">E-mail</th>
+                <th scope="col">Perfil</th>
                 <th scope="col">Data de Cadastro</th>
                 <th scope="col"></th>
             </tr>
@@ -53,11 +54,12 @@
                         <td>@user.Name</td>
                         <td>@user.Login</td>
                         <td>@user.Email</td>
+                        <td>@(user.Perfil == ControleDeContato.Enums.PerfilEnum.Admin ? "Administrador" : "Padrão")</td>
                         <td>@user.DataRegister</td>
                         <td>
-                            <div class="btn-group" role="group">
-                                <a role="button" asp-action="Edit" asp-controller="user" asp-route-id="@user.Id" class="btn btn-primary">Editar</a>
-                                <a role="button" asp-action="DeleteContact" asp-controller="user" asp-route-id="@user.Id" class="btn btn-danger">Apagar</a>
+                            <div class="btn-group" role="group" style="width:100%">
+                                <a role="button" asp-action="Edit" asp-controller="User" asp-route-id="@user.Id" class="btn btn-primary">Editar</a>
+                                <a role="button" asp-action="DeleteUser" asp-controller="User" asp-route-id="@user.Id" class="btn btn-danger">Apagar</a>
                             </div>
                         </td>
                     </tr>

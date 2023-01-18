@@ -14,7 +14,7 @@ $(document).ready(function () {
             "sInfoFiltered": "(Filtrar de _MAX_ total )",
             "sInfoPostFix": "",
             "sInfoThousands": ".",
-            "sLengthMenu": "Mostrar _MENU_ registros por pagina",
+            "sLengthMenu": "_MENU_ registros por página",
             "sLoadingRecords": "Carregando...",
             "sProcessing": "Processando...",
             "sZeroRecords": "Nenhum registro encontrado",

@@ -1,14 +1,14 @@
 ﻿using ControleDeContato.Enums;
-using System;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace ControleDeContato.Models
 {
-    public class UserModel
+    public class PasswordlessUserModel
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage ="Digite o seu nome")]
+        [Required(ErrorMessage = "Digite o seu nome")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Digite o Login do usuário")]
@@ -21,16 +21,7 @@ namespace ControleDeContato.Models
         [Required(ErrorMessage = "Informe o Perfil do usuário")]
         public PerfilEnum? Perfil { get; set; }
 
-        [Required(ErrorMessage = "Digite a senha do usuário")]
-        public string Password { get; set; }
-
-
-        public DateTime DataRegister { get; set; }
-        public DateTime? DataUpdate { get; set; }
-
-        public bool ValidPassword(string password)
-        {
-            return Password == password;
-        }
+       
     }
 }
+

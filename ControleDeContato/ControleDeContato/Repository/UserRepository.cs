@@ -16,6 +16,11 @@ namespace ControleDeContato.Repository
             this._dataContext = dataContext;
         }
 
+        public UserModel SearchByLogin(string login)
+        {
+            return _dataContext.Users.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
+        }
+
         public UserModel ListForId(int id)
         {
             return _dataContext.Users.FirstOrDefault(x => x.Id == id);
@@ -66,5 +71,6 @@ namespace ControleDeContato.Repository
             return true;
         }
 
+       
     }
 }
