@@ -1,9 +1,11 @@
-﻿using ControleDeContato.Models;
+﻿using ControleDeContato.Filters;
+using ControleDeContato.Models;
 using ControleDeContato.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleDeContato.Controllers
 {
+    [PaginaUsuarioLogado]
     public class ContactController : Controller
     {
         private readonly IContactRepository _contactRepository;

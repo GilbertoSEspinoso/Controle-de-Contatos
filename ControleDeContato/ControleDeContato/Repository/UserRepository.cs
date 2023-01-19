@@ -35,6 +35,7 @@ namespace ControleDeContato.Repository
         {
             //gravar no banco de dados
             user.DataRegister = DateTime.Now;
+            user.SetSenhaHash();
             _dataContext.Users.Add(user);
             _dataContext.SaveChanges();
             return user;

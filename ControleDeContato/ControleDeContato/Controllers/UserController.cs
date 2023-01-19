@@ -1,4 +1,5 @@
-﻿using ControleDeContato.Models;
+﻿using ControleDeContato.Filters;
+using ControleDeContato.Models;
 using ControleDeContato.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 
 namespace ControleDeContato.Controllers
 {
+    [PaginaSomenteAdmin]
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;
