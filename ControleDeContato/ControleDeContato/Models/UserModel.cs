@@ -37,5 +37,12 @@ namespace ControleDeContato.Models
         {
             Password = Password.GerarHash();
         }
+
+        public string GenerateNewPassword()
+        {
+            string newPassword = Guid.NewGuid().ToString().Substring(0,8);
+            Password= newPassword.GerarHash();
+            return newPassword;
+        }
     }
 }
