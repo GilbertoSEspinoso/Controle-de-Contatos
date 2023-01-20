@@ -10,7 +10,7 @@ namespace ControleDeContato.Repository
         private readonly DataContext _dataContext;
         public ContactRepository(DataContext dataContext)
         {
-            _dataContext = dataContext;
+            this._dataContext = dataContext;
         }
 
         public ContactModel ListForId(int id)
@@ -18,9 +18,9 @@ namespace ControleDeContato.Repository
             return _dataContext.Contacts.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<ContactModel> GetAll()
+        public List<ContactModel> GetAll(int usuarioId)
         {
-            return _dataContext.Contacts.ToList();
+            return _dataContext.Contacts.Where(x => x.UsuarioId == usuarioId).ToList();
         }
 
         public ContactModel AddContact(ContactModel contact)
@@ -34,7 +34,9 @@ namespace ControleDeContato.Repository
         public ContactModel UpdateContact(ContactModel contact)
         {
             ContactModel contactDb = ListForId(contact.Id);
-            if(contactDb== null)
+
+
+            if (contactDb == null)
             {
                 throw new System.Exception("Houve um erro na atualização do contato");
             }

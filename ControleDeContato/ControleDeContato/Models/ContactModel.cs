@@ -6,15 +6,20 @@ namespace ControleDeContato.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage ="Digite o nome")]
+        [Required(ErrorMessage = "Digite o nome")]
         public string Name { get; set; }
 
-        [EmailAddress(ErrorMessage ="Digite um e-mail válido!")]
+        [EmailAddress(ErrorMessage = "Digite um e-mail válido!")]
         [Required(ErrorMessage = "Digite o e-mail")]
         public string Email { get; set; }
 
-        [Phone(ErrorMessage ="Digite um número válido!")]
+        [Phone(ErrorMessage = "Digite um número válido!")]
         [Required(ErrorMessage = "Digite o número para contato")]
         public string Phone { get; set; }
+
+
+        // relacionar com contato
+        public int? UsuarioId { get; set; }
+        public UserModel Usuario { get; set; }
     }
 }

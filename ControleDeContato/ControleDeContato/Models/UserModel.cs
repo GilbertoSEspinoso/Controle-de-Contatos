@@ -1,6 +1,7 @@
 ﻿using ControleDeContato.Enums;
 using ControleDeContato.Helper;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ControleDeContato.Models
@@ -25,9 +26,13 @@ namespace ControleDeContato.Models
         [Required(ErrorMessage = "Digite a senha do usuário")]
         public string Password { get; set; }
 
-
         public DateTime DataRegister { get; set; }
         public DateTime? DataUpdate { get; set; }
+
+       
+        //relacionar com usuario
+        public virtual List<ContactModel> Contacts { get; set; }    
+
 
         public bool ValidPassword(string password)
         {

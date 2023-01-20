@@ -1,4 +1,5 @@
-﻿using ControleDeContato.Models;
+﻿using ControleDeContato.Data.Map;
+using ControleDeContato.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ControleDeContato.Data
@@ -12,5 +13,12 @@ namespace ControleDeContato.Data
 
         public DbSet<ContactModel> Contacts { get; set; }
         public DbSet<UserModel> Users { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new ContactMap());
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
