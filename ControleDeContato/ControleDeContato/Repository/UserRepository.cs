@@ -23,7 +23,7 @@ namespace ControleDeContato.Repository
 
         public UserModel SearchByEmailAndLogin(string email, string login)
         {
-            return _dataContext.Users.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper() &&  x.Login.ToUpper() == login.ToUpper());
+            return _dataContext.Users.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper() && x.Login.ToUpper() == login.ToUpper());
         }
 
         public UserModel ListForId(int id)
@@ -65,6 +65,24 @@ namespace ControleDeContato.Repository
             return userDb;
         }
 
+        public UserModel ChangePassword(ChangePasswordModel changePasswordModel)
+        {
+            UserModel userDB = ListForId(changePasswordModel.Id);
+
+            if (userDB == null) throw new System.Exception("Houve um erro na atualização da senha, usuário não encontrado");
+
+            if (!userDB.ValidPassword(changePasswordModel.CurrentPassword)) throw new Exception("Senha atual não confere.");
+
+            if (userDB.ValidPassword(changePasswordModel.NewPassword)) throw new Exception("Nova senha deve ser diferente da atual");
+
+            userDB.SetNewPass(changePasswordModel.NewPassword);
+            userDB.DataUpdate = DateTime.Now;
+
+            _dataContext.Users.Update(userDB); _dataContext.SaveChanges();
+
+            return userDB;
+        }
+
         public bool Delete(int id)
         {
             UserModel userDB = ListForId(id);
@@ -77,6 +95,6 @@ namespace ControleDeContato.Repository
             return true;
         }
 
-       
+
     }
 }

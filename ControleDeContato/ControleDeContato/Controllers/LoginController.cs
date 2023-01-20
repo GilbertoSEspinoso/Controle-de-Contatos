@@ -86,6 +86,7 @@ namespace ControleDeContato.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    //este metedo busca usuario no banco
                     UserModel user = _userRepository.SearchByEmailAndLogin(redefinirSenhaModel.Email, redefinirSenhaModel.Login);
 
                     if (user != null)

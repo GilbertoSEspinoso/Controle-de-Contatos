@@ -9,7 +9,7 @@ namespace ControleDeContato.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage ="Digite o seu nome")]
+        [Required(ErrorMessage = "Digite o seu nome")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Digite o Login do usuário")]
@@ -38,10 +38,15 @@ namespace ControleDeContato.Models
             Password = Password.GerarHash();
         }
 
+        public void SetNewPass(string newPassword)
+        {
+            Password = newPassword.GerarHash();
+        }
+
         public string GenerateNewPassword()
         {
-            string newPassword = Guid.NewGuid().ToString().Substring(0,8);
-            Password= newPassword.GerarHash();
+            string newPassword = Guid.NewGuid().ToString().Substring(0, 8);
+            Password = newPassword.GerarHash();
             return newPassword;
         }
     }
