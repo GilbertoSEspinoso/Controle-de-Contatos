@@ -3,17 +3,6 @@
     Layout = "_LayoutLoggedOff";
     ViewData["Title"] = "Redefinir a senha";
 }
-@if (TempData["MensagemError"] != null)
-{
-    <div class="alert alert-danger" role="alert">
-        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
-        @TempData["MensagemError"]
-    </div>
-       
-}
-
-
-
 
 <form asp-controller="Login" asp-action="EnviarLinkRedefinirSenha" method="post" class="vh-100 gradient-custom">
     <div class="container py-5 h-100">
@@ -25,33 +14,42 @@
                         <div class="mb-md-5 mt-md-4 pb-5">
 
                             <h2 class="fw-bold mb-2 text-uppercase">Esqueceu sua senha?</h2>
-                            
+
                             <p class="text-white-50 mb-5">Não se Preocupe. Enviaremos uma nova senha para seu e-mail</p>
-                            
-                          
+
+
                             <!--Login-->
                             <div class="form-outline form-white mb-4">
-                                <input type="text" asp-for="Login" id="login" class="form-control form-control-lg" placeholder="Insira o Login de recuperação"/>
+                                <input type="text" asp-for="Login" id="login" class="form-control form-control-lg" placeholder="Insira o Login de recuperação" />
                                 <label for="login" class="form-label"></label>
                                 @Html.ValidationMessageFor(x => x.Login)
                             </div>
 
                             <!--Email-->
                             <div class="form-outline form-white mb-4">
-                                <input type="text" asp-for="Email" id="email" class="form-control form-control-lg" placeholder="Insira o e-mail de recuperação"/>
+                                <input type="text" asp-for="Email" id="email" class="form-control form-control-lg" placeholder="Insira o e-mail de recuperação" />
                                 <label for="email" class="form-label"></label>
                                 @Html.ValidationMessageFor(x => x.Email)
                             </div>
 
-                            
-                            <!--Button voltar -->
-                            <p class="small mb-5 pb-lg-2">
-                                <a class="text-white-50 mb-10" asp-controller="Login" asp-action="Index">Voltar</a>
-                            </p>
+                            <!--Notificacao-->
+                            @if (TempData["MensagemError"] != null)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+                                    @TempData["MensagemError"]
+                                </div>
 
+                            }
 
                             <!--Button nova senha -->
                             <button class="btn btn-outline-light btn-lg px-5" type="submit">Enviar nova senha</button>
+                            
+                            <!--voltar -->
+                            <p></p>
+                            <p class="small mb-5 pb-lg-2">
+                                <a class="text-white-50 mb-10" asp-controller="Login" asp-action="Index">Voltar</a>
+                            </p>
 
                         </div>
 

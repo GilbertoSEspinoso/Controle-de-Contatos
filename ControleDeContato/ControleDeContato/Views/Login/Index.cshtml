@@ -4,23 +4,10 @@
     ViewData["Title"] = "Login";
 }
 
-@if (TempData["MensagemError"] != null)
-{
-    <div class="alert alert-danger" role="alert">
-        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
-        @TempData["MensagemError"]
-    </div>
-}
 
-@if (TempData["MensagemSucesso"] != null)
-{
-    <div class="alert alert-success" role="alert">
-        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
-        @TempData["MensagemSucesso"]
-    </div>
-}
 
 <form asp-controller="Login" asp-action="StartLogin" method="post" class="vh-100 gradient-custom">
+
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -32,6 +19,7 @@
                             <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                             <p class="text-white-50 mb-5">Por Favor entre com seu Login e Senha!</p>
                             <label for="login" class="form-label"></label>
+                           
                             <!--Login-->
                             <div class="form-outline form-white mb-4">
                                 <input type="text" asp-for="Login" id="login" class="form-control form-control-lg" placeholder="Login" />
@@ -41,19 +29,39 @@
 
                             <!--Password-->
                             <div class="form-outline form-white mb-4">
-                               <input type="password" asp-for="Password" id="password" class="form-control form-control-lg" placeholder="Senha" />
-                               
+                                <input type="password" asp-for="Password" id="password" class="form-control form-control-lg" placeholder="Senha" />
+
                                 @Html.ValidationMessageFor(x => x.Password)
                             </div>
 
-                            <!--Redefinir senha-->
+                            <!--notificacao-->
+                            <p>
+                                @if (TempData["MensagemError"] != null)
+                                {
+                                    <div class="alert alert-danger" role="alert">
+                                        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+                                        @TempData["MensagemError"]
+                                    </div>
+
+                                }
+
+                                @if (TempData["MensagemSucesso"] != null)
+                                {
+                                    <div class="alert alert-success" role="alert">
+                                        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+                                        @TempData["MensagemSucesso"]
+                                    </div>
+                                }
+                            </p>
+
+                            <!--Button send -->
+                            <button class="btn btn-outline-light btn-lg px-5" type="submit">Entrar</button>
+                            
+                            <!--esqueceu senha -->
+                            <p></p>
                             <p class="small mb-5 pb-lg-2">
                                 <a class="text-white-50" asp-action="RedefinirSenha" asp-controller="Login">Esqueceu sua senha?</a>
                             </p>
-                           
-                            <!--Button send -->
-                            <button class="btn btn-outline-light btn-lg px-5" type="submit">Entrar</button>
-
                         </div>
 
                     </div>
