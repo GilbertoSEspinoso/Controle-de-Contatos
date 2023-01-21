@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 
+
 namespace ControleDeContato.ViewComponents
 {
     public class Menu : ViewComponent
@@ -14,7 +15,7 @@ namespace ControleDeContato.ViewComponents
             if (string.IsNullOrEmpty(sessionUser)) return null;
 
             UserModel user = JsonConvert.DeserializeObject<UserModel>(sessionUser);
-            
+
 
             return View(user);
         }
