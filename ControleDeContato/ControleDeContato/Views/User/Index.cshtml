@@ -1,16 +1,17 @@
 ﻿@model List<UserModel>
 @{
-    ViewData["Title"] = "Usuário";
+    ViewData["Title"] = "Usuários";
 }
 
 <div>
-
+    <!--Button-->
     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <a class="btn btn-primary" role="button" asp-controller="User" asp-action="Create">Adicionar novo usuário</a>
+        <a class="btn btn-dark" role="button" asp-controller="User" asp-action="Create">Cadastrar um novo usuário</a>
     </div>
 
     <br />
 
+    <!--Notificacao-->
     @if (TempData["MensagemSucesso"] != null)
     {
         <div class="alert alert-success" role="alert">
@@ -27,11 +28,11 @@
     }
 
 
-    <br />
-    <h1 class="display-4">@ViewData["Title"]</h1>
-    <br />
-
-    <table id="table-usuarios" class="display" style="width:100%">
+    <div class="text-center">
+        <h1 class="display-4">@ViewData["Title"]</h1>
+    </div>
+    <!--Inicio da Tabela-->
+    <table id="table-usuarios" class="table-dark" style="width:100%">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -50,7 +51,7 @@
             {
                 foreach (var user in Model)
                 {
-                    <tr>
+                    <tr class="gradient-custom">
                         <th scope="row">@user.Id</th>
                         <td>@user.Name</td>
                         <td>@user.Login</td>

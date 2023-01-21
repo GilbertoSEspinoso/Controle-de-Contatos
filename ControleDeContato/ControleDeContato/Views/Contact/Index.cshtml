@@ -3,14 +3,15 @@
     ViewData["Title"] = "Agenta de contatos";
 }
 
-<div >
-
+<div>
+    <!--Button-->
     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <a class="btn btn-primary" asp-controller="Contact" asp-action="Create" role="button">Adicionar novo contato</a>
+        <a class="btn btn-dark" asp-controller="Contact" asp-action="Create" role="button">Cadastrar um novo contato</a>
     </div>
 
     <br />
 
+    <!--Notificacao-->
     @if (TempData["MensagemSucesso"] != null)
     {
         <div class="alert alert-success" role="alert">
@@ -27,16 +28,15 @@
         </div>
     }
 
-    
 
-    <br />
-    <h1 class="display-4 ">@ViewData["Title"]</h1>
-    <br />
-
-    <table id="table-contatos" class="display" style="width:100%">
+    <div class="text-center">
+        <h1 class="display-4">@ViewData["Title"]</h1>
+    </div>
+    <!--Inicio da tabela-->
+    <table id="table-contatos" class="table-dark" style="width:100%">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">Id</th>
                 <th scope="col">Nome</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">Celular</th>
@@ -49,14 +49,14 @@
             {
                 foreach (ContactModel contact in Model)
                 {
-                    <tr>
+                    <tr class="gradient-custom">
                         <th scope="row">@contact.Id</th>
                         <td>@contact.Name</td>
                         <td>@contact.Email</td>
                         <td>@contact.Phone</td>
                         <td>
                             <div class="btn-group" role="group" style="width:100%">
-                                <a role="button" asp-action="Edit" asp-controller="Contact" asp-route-id="@contact.Id" class="btn btn-primary" >Editar</a>
+                                <a role="button" asp-action="Edit" asp-controller="Contact" asp-route-id="@contact.Id" class="btn btn-primary">Editar</a>
                                 <a role="button" asp-action="DeleteContact" asp-controller="Contact" asp-route-id="@contact.Id" class="btn btn-danger">Apagar</a>
                             </div>
                         </td>
@@ -70,6 +70,6 @@
 
         </tbody>
     </table>
-
+       
 </div>
 
