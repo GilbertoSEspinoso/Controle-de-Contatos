@@ -1,10 +1,12 @@
-﻿using ControleDeContato.Helper;
+﻿using ControleDeContato.Filters;
+using ControleDeContato.Helper;
 using ControleDeContato.Models;
 using ControleDeContato.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleDeContato.Controllers
 {
+    [PaginaUsuarioLogado]
     public class ChangePasswordController : Controller
     {
         private readonly IUserRepository _userRepository;

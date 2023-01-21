@@ -33,7 +33,9 @@ namespace ControleDeContato.Repository
 
         public List<UserModel> GetAll()
         {
-            return _dataContext.Users.ToList();
+            return _dataContext.Users
+                .Include(x => x.Contacts)
+                .ToList();
         }
 
         public UserModel AddUser(UserModel user)

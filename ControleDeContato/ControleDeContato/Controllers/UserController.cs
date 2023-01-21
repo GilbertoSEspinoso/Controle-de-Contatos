@@ -11,10 +11,13 @@ namespace ControleDeContato.Controllers
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;
+        private readonly IContactRepository _contactRepository;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IUserRepository userRepository,
+                              IContactRepository contactRepository)
         {
             _userRepository = userRepository;
+            _contactRepository = contactRepository;
         }
 
         public IActionResult Index()
@@ -39,6 +42,12 @@ namespace ControleDeContato.Controllers
         {
             UserModel user = _userRepository.ListForId(id);
             return View(user);
+        }
+
+        public IActionResult ListarContatosPorUsuariosId(int id)
+        {
+            List<ContactModel> contacts = _contactRepository.GetAll(id);
+            return PartialView("_ContactsUsers", contacts);
         }
 
 

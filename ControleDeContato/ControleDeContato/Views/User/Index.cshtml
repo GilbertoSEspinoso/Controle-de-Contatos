@@ -31,7 +31,7 @@
     <h1 class="display-4">@ViewData["Title"]</h1>
     <br />
 
-    <table id="table-principal" class="display" style="width:100%">
+    <table id="table-usuarios" class="display" style="width:100%">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -39,6 +39,7 @@
                 <th scope="col">Login</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">Perfil</th>
+                <th scope="col">Total de Contatos</th>
                 <th scope="col">Data de Cadastro</th>
                 <th scope="col"></th>
             </tr>
@@ -55,9 +56,15 @@
                         <td>@user.Login</td>
                         <td>@user.Email</td>
                         <td>@(user.Perfil == ControleDeContato.Enums.PerfilEnum.Admin ? "Administrador" : "Padrão")</td>
+                        <td>
+                            <!-- btn-total é uma classe criada para utilizar o modal -->
+                            <a href="javascript:" usuario-id="@user.Id" class="btn btn-success btn-sm btn-total-contatos">
+                                @(user.Contacts != null && user.Contacts.Any() ? user.Contacts.Count() : 0)
+                            </a>
+                        </td>
                         <td>@user.DataRegister</td>
                         <td>
-                            <div class="btn-group" role="group" style="width:100%">
+                            <div class="btn-group" role="group">
                                 <a role="button" asp-action="Edit" asp-controller="User" asp-route-id="@user.Id" class="btn btn-primary">Editar</a>
                                 <a role="button" asp-action="DeleteUser" asp-controller="User" asp-route-id="@user.Id" class="btn btn-danger">Apagar</a>
                             </div>
@@ -72,5 +79,27 @@
 
         </tbody>
     </table>
+
+
+    <!--Modal-->
+    <!--Modal é aberta via JS na criacao da class .btn-total-contatos-->
+    <div id="modalContatosUsuario" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Listagem de contatos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!--requisicao Ajax-->
+                    <div id="listaContatosUsuario"></div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </div>
