@@ -12,6 +12,6 @@ namespace ControleDeContato.Repository
         UserModel AddUser(UserModel user);
         UserModel UpdateUser(UserModel user);
         UserModel ChangePassword(ChangePasswordModel changePasswordModel);
-        bool Delete(int id);
+        bool DeleteUser(int id);
     }
 }

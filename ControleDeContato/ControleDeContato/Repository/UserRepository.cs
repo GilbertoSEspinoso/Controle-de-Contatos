@@ -85,7 +85,7 @@ namespace ControleDeContato.Repository
             return userDB;
         }
 
-        public bool Delete(int id)
+        public bool DeleteUser(int id)
         {
             UserModel userDB = ListForId(id);
             if (userDB == null)

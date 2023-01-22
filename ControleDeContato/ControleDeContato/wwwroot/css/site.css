@@ -100,20 +100,34 @@ body {
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
 }
+.fundograd {
+    background: linear-gradient(45deg,#3c30d0, #6615c9);
+}
 
 
 /* Tabelas contato e usuario*/
 
 #area-principal {
-    width: 980px;
-    margin: 0px auto;
-    padding: 20px;
+    width: 950px;
+    padding: 10px;
+    padding-top:50px;
+    padding-bottom: 100px;
+    margin-top:20px;
+    margin-bottom: 50px;
     background-color: white;
     
 }
+
+.navprincipal {
+    width: 950px;
+    padding: 0px;
+    position: center;
+   
+}
+
 .centralizarTexto {
-    text-align:center;
-} 
+    text-align: center;
+}
 
 .postagem {
     padding: 10px;

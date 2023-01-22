@@ -78,7 +78,7 @@ namespace ControleDeContato.Controllers
         {
             try
             {
-                bool deleted = _userRepository.Delete(id);
+                bool deleted = _userRepository.DeleteUser(id);
 
                 if (deleted)
                 {

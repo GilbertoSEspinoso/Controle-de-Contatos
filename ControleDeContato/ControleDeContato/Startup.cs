@@ -35,6 +35,7 @@ namespace ControleDeContato
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ISessao, Sessao>();
             services.AddScoped<IEmail, Email>();
+            
 
             services.AddSession(o =>
             {
@@ -50,6 +51,7 @@ namespace ControleDeContato
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
             }
             else
             {
