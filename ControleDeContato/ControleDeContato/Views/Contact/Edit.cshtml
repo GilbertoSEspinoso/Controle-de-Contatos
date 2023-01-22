@@ -3,36 +3,42 @@
     ViewData["Title"] = "Editar contato";
 }
 
-<div class="text-center">
+<div id="area-principal">
 
-    <h1 class="display-4">Editar contato</h1>
+    <div class="centralizarTexto">
+        <h1 class="display-4">@ViewData["Title"]</h1>
+    </div>
+
+    <div class="postagem">
+
+
+        <form asp-controler="Contact" asp-action="Change" method="post">
+
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label for="name"></label>
+                <input type="text" asp-for="Name" class="form-control" placeholder="Digite o nome do contato">
+                @Html.ValidationMessageFor(x => x.Name)
+            </div>
+
+            <div class="form-group">
+                <label for="email"></label>
+                <input type="text" asp-for="Email" class="form-control" placeholder="Digite o e-mail do contato">
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+
+            <div class="form-group">
+                <label for="phone"></label>
+                <input type="text" asp-for="Phone" class="form-control" placeholder="Digite o celular do contato">
+                @Html.ValidationMessageFor(x => x.Phone)
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Salvar alterações</button>
+            <a class="btn btn-secondary btn-block" asp-controller="Contact" asp-action="Index">Voltar</a>
+
+        </form>
+    </div>
 
 </div>
-
-<form asp-controler="Contact" asp-action="Change" method="post">
-
-    <input type="hidden" asp-for="Id" />
-    <div class="form-group">
-        <label for="name">Nome</label>
-        <input type="text" asp-for="Name" class="form-control" placeholder="Digite o nome do contato">
-        @Html.ValidationMessageFor(x => x.Name)
-    </div>
-
-    <div class="form-group">
-        <label for="email">E-mail</label>
-        <input type="text" asp-for="Email" class="form-control" placeholder="Digite o e-mail do contato">
-        @Html.ValidationMessageFor(x => x.Email)
-    </div>
-
-    <div class="form-group">
-        <label for="phone">Celular</label>
-        <input type="text" asp-for="Phone" class="form-control" placeholder="Digite o celular do contato">
-        @Html.ValidationMessageFor(x => x.Phone)
-    </div>
-
-    <button type="submit" class="btn btn-primary btn-block">Alterar</button>
-    <a class="btn btn-secondary btn-block" asp-controller="Contact" asp-action="Index">Voltar</a>
-
-</form>
 
 

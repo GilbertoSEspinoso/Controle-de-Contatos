@@ -2,13 +2,15 @@
 @{
     ViewData["Title"] = "Listagem de Usuários";
 }
-<div class="text-center">
-
-    <h3>Deseja realmente apagar o Usuário(@Model.Name) ?</h3>
+<div id="area-principal">
+    <div class="centralizarTexto">
+        <h3>Deseja realmente apagar o Usuário(@Model.Name) ?</h3>
+    </div>
+    <div class="postagem">
+        <a class="btn btn-primary  btn-block" asp-controller="User" asp-action="Index" role="button">Cancelar</a>
+        <a class="btn btn-danger btn-block" asp-controller="User" asp-action="Delete" asp-route-id="@Model.Id" role="button">Confirmar</a>
+    </div>
 </div>
-
-<a class="btn btn-primary  btn-block" asp-action="Index" asp-controller="User" role="button">Cancelar</a>
-<a class="btn btn-danger btn-block" asp-action="Delete" asp-controller="User" asp-route-id="@Model.Id" role="button">Confirmar</a>
 
 
 

@@ -4,12 +4,6 @@
 }
 
 <div>
-    <!--Button-->
-    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <a class="btn btn-dark" asp-controller="Contact" asp-action="Create" role="button">Cadastrar um novo contato</a>
-    </div>
-
-    <br />
 
     <!--Notificacao-->
     @if (TempData["MensagemSucesso"] != null)
@@ -28,48 +22,62 @@
         </div>
     }
 
+</div>
 
-    <div class="text-center">
-        <h1 class="display-4">@ViewData["Title"]</h1>
+
+<div id="area-principal">
+
+    <div>
+        <h2 class="display-4 centralizarTexto">@ViewData["Title"]</h2>
     </div>
     <!--Inicio da tabela-->
-    <table id="table-contatos" class="table-dark" style="width:100%">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">Celular</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="postagem">
 
-            @if (Model != null && Model.Any())
-            {
-                foreach (ContactModel contact in Model)
+        <table id="table-contatos" class="display">
+            <thead>
+                <tr class="bg-dark text-white">
+                    <th scope="col">Id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
                 {
-                    <tr class="gradient-custom">
-                        <th scope="row">@contact.Id</th>
-                        <td>@contact.Name</td>
-                        <td>@contact.Email</td>
-                        <td>@contact.Phone</td>
-                        <td>
-                            <div class="btn-group" role="group" style="width:100%">
-                                <a role="button" asp-action="Edit" asp-controller="Contact" asp-route-id="@contact.Id" class="btn btn-primary">Editar</a>
-                                <a role="button" asp-action="DeleteContact" asp-controller="Contact" asp-route-id="@contact.Id" class="btn btn-danger">Apagar</a>
-                            </div>
-                        </td>
-                    </tr>
+                    foreach (ContactModel contact in Model)
+                    {
+                        <tr>
+                            <th scope="row">@contact.Id</th>
+                            <td>@contact.Name</td>
+                            <td>@contact.Email</td>
+                            <td>@contact.Phone</td>
+                            <td>
+                                <div class="btn-block" role="grid">
+                                    <a role="button" asp-action="Edit" asp-controller="Contact" asp-route-id="@contact.Id" class="btn btn-primary btn-sm">Editar</a>
+                                    <a role="button" asp-action="DeleteContact" asp-controller="Contact" asp-route-id="@contact.Id" class="btn btn-danger btn-sm">excluir</a>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-            else
-            {
-                <tr class="odd"><td valign="top" colspan="5">Nenhum usuário encontrato</td></tr>
-            }
+                else
+                {
+                    <tr class="odd"><td valign="top" colspan="5">Nenhum usuário encontrato</td></tr>
+                }
+            </tbody>
+        </table>
+        <!--final da tabela-->
+        <!--Button-->
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a class="btn btn-dark" asp-controller="Contact" asp-action="Create" role="button">Cadastrar um novo contato</a>
+        </div>
 
-        </tbody>
-    </table>
-       
+        <br />
+
+    </div>
+
+    
 </div>
+
 

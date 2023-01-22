@@ -4,13 +4,6 @@
 }
 
 <div>
-    <!--Button-->
-    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <a class="btn btn-dark" role="button" asp-controller="User" asp-action="Create">Cadastrar um novo usuário</a>
-    </div>
-
-    <br />
-
     <!--Notificacao-->
     @if (TempData["MensagemSucesso"] != null)
     {
@@ -27,80 +20,97 @@
         </div>
     }
 
+</div>
 
-    <div class="text-center">
-        <h1 class="display-4">@ViewData["Title"]</h1>
+
+
+
+
+<div id="area-principal">
+
+    <div>
+        <h1 class="display-4 centralizarTexto">@ViewData["Title"]</h1>
     </div>
+
     <!--Inicio da Tabela-->
-    <table id="table-usuarios" class="table-dark" style="width:100%">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Login</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">Perfil</th>
-                <th scope="col">Total de Contatos</th>
-                <th scope="col">Data de Cadastro</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="postagem">
 
-            @if (Model != null && Model.Any())
-            {
-                foreach (var user in Model)
+        <table id="table-usuarios" class="display">
+            <thead>
+                <tr class="bg-dark text-white">
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Login</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Perfil</th>
+                    <th scope="col">Contatos</th>
+
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model != null && Model.Any())
                 {
-                    <tr class="gradient-custom">
-                        <th scope="row">@user.Id</th>
-                        <td>@user.Name</td>
-                        <td>@user.Login</td>
-                        <td>@user.Email</td>
-                        <td>@(user.Perfil == ControleDeContato.Enums.PerfilEnum.Admin ? "Administrador" : "Padrão")</td>
-                        <td>
-                            <!-- btn-total é uma classe criada para utilizar o modal -->
-                            <a href="javascript:" usuario-id="@user.Id" class="btn btn-success btn-sm btn-total-contatos">
-                                @(user.Contacts != null && user.Contacts.Any() ? user.Contacts.Count() : 0)
-                            </a>
-                        </td>
-                        <td>@user.DataRegister</td>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <a role="button" asp-action="Edit" asp-controller="User" asp-route-id="@user.Id" class="btn btn-primary">Editar</a>
-                                <a role="button" asp-action="DeleteUser" asp-controller="User" asp-route-id="@user.Id" class="btn btn-danger">Apagar</a>
-                            </div>
-                        </td>
-                    </tr>
+                    foreach (var user in Model)
+                    {
+                        <tr>
+                            <th scope="row">@user.Id</th>
+                            <td>@user.Name</td>
+                            <td>@user.Login</td>
+                            <td>@user.Email</td>
+                            <td>@(user.Perfil == ControleDeContato.Enums.PerfilEnum.Admin ? "Administrador" : "Padrão")</td>
+                            <td>
+                                <!-- btn-total é uma classe criada para utilizar o modal -->
+                                <a href="javascript:" usuario-id="@user.Id" class="btn btn-success btn-sm btn-total-contatos">
+                                    @(user.Contacts != null && user.Contacts.Any() ? user.Contacts.Count() : 0)
+                                </a>
+                            </td>
+
+                            <td>
+                                <div class="btn-block align-content-center" role="grid">
+                                    <a role="button" asp-action="Edit" asp-controller="User" asp-route-id="@user.Id" class="btn btn-primary btn-sm">Editar</a>
+                                    <a role="button" asp-action="DeleteUser" asp-controller="User" asp-route-id="@user.Id" class="btn btn-danger btn-sm">Excluir</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-            else
-            {
-                <tr class="odd"><td valign="top" colspan="5">Nenhum usuário encontrato</td></tr>
-            }
+                else
+                {
+                    <tr class="odd"><td valign="top" colspan="5">Nenhum usuário encontrato</td></tr>
+                }
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+        <!--Final da Tabela-->
+        <!--Button-->
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a class="btn btn-dark" role="button" asp-controller="User" asp-action="Create">Cadastrar um novo usuário</a>
+        </div>
+
+        <br />
+    </div>
+</div>
 
 
-    <!--Modal-->
-    <!--Modal é aberta via JS na criacao da class .btn-total-contatos-->
-    <div id="modalContatosUsuario" class="modal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Listagem de contatos</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!--requisicao Ajax-->
-                    <div id="listaContatosUsuario"></div>
-
-                </div>
+<!--Modal-->
+<!--Modal é aberta via JS na criacao da class .btn-total-contatos-->
+<div id="modalContatosUsuario" class="modal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Listagem de contatos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--requisicao Ajax-->
+                <div id="listaContatosUsuario"></div>
 
             </div>
+
         </div>
     </div>
-
 </div>

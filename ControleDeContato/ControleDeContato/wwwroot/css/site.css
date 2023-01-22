@@ -102,3 +102,22 @@ body {
 }
 
 
+/* Tabelas contato e usuario*/
+
+#area-principal {
+    width: 980px;
+    margin: 0px auto;
+    padding: 20px;
+    background-color: white;
+    
+}
+.centralizarTexto {
+    text-align:center;
+} 
+
+.postagem {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
